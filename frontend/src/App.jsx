@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer';
 import { useAuthStore } from "./store/useAuthStore.js"
 import { Loader } from 'lucide-react';
-import WatchPage from './components/pages/watchPage';
+import WatchPage from './components/pages/WatchPage';
 import SearchPage from './components/pages/SearchPage';
 import HistoryPage from './components/pages/HistoryPage';
 import NotFoundPage from './components/pages/404';
