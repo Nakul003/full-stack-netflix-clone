@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../../assets/netflix-logo.png"
 import { useForm } from 'react-hook-form'
-import { useAuthStore } from '../../store/useAuthStore'
+import { useAuthStore } from '../../store/useAuthStore.js'
 import { Loader2 } from 'lucide-react'
 const LogIn = () => {
 
