@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import logo from "../../assets/netflix-logo.png"
 import { useForm } from 'react-hook-form'
 import { useAuthStore } from '../../store/useAuthStore'
+import { Loader2 } from 'lucide-react'
 const LogIn = () => {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const { logIn } = useAuthStore()
+  const { logIn, isLoggingIn } = useAuthStore()
 
   const onSubmit = async (data) => {
     logIn(data)
@@ -41,7 +42,11 @@ const LogIn = () => {
               <input type={true ?'password':"text"} {...register("password")}  className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring' placeholder='********' id='password'/>
             </div>
 
-            <button type='submit' className='w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 '>Sign In</button>
+            <button type='submit' disabled={isLoggingIn} className='w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 '> { isLoggingIn ? (
+            <div className='flex justify-center gap-2 items-center'>
+              <Loader2 className='animate-spin' />
+              LoggingIn...
+            </div>) : ("Log In")}</button>
           </form>
           <div className='text-center text-gray-400'>
             Don't have an account?{" "}

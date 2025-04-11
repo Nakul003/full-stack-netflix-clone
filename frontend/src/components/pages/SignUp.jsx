@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link} from "react-router-dom"
 import logo from "../../assets/netflix-logo.png"
 import { useForm } from 'react-hook-form'
-
+import { Loader2 } from "lucide-react"
 import { useAuthStore } from "../../store/useAuthStore.js"
 
 const SignUp = () => {
@@ -11,7 +11,7 @@ const SignUp = () => {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const { emailFromAuthScreen, signUp } = useAuthStore()
+  const { emailFromAuthScreen, signUp , isSigningUp} = useAuthStore()
 
   const onSubmit = async (data) => {
       signUp(data)
@@ -52,7 +52,11 @@ const SignUp = () => {
               <input type={true ?'password':"text"} {...register("password")}  className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring' placeholder='********' id='password'/>
             </div>
 
-            <button type='submit' className='w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 '>Sign Up</button>
+            <button type='submit' className='w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 ' disabled={isSigningUp}> { isSigningUp ? (
+            <div className='flex justify-center gap-2 items-center'>
+              <Loader2 className='animate-spin' />
+              SigningUp...
+            </div>) : ("Sign Up")}</button>
           </form>
           <div className='text-center text-gray-400'>
             Already a member?{" "}

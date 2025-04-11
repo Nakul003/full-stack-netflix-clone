@@ -5,8 +5,7 @@ export const useAuthStore = create((set, get) =>({
     emailFromAuthScreen:null,
     user:null,
     isSigningUp:false,
-    isLogging:false,
-    isLoggingOut:false,
+    isLoggingIn:false,
     isCheckingAuth:true,
 
     setEmailFromAuthScreen: (email) => set({ emailFromAuthScreen: email }),
@@ -41,7 +40,6 @@ export const useAuthStore = create((set, get) =>({
     },
 
     logOut: async () => {
-        set({isLoggingOut:true})
         try {
             await axiosInstance.post("/auth/logout")
             set({user:null})
@@ -49,8 +47,6 @@ export const useAuthStore = create((set, get) =>({
         } catch (error) {
             console.log("Error in logOut function",error.message);
             toast.error(error.response.data.message)
-        } finally{
-            set({isLoggingOut:true})
         }
     },
 
